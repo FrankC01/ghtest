@@ -45,13 +45,13 @@ jobs:
           args: --release --out dist
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
           manylinux: auto
-      - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.platform.target }}
-          args: --release --out dist -i python3.12
-          sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
-          manylinux: auto
+      # - name: Build free-threaded wheels
+      #   uses: PyO3/maturin-action@v1
+      #   with:
+      #     target: ${{ matrix.platform.target }}
+      #     args: --release --out dist -i python3.12
+      #     sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
+      #     manylinux: auto
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
@@ -141,3 +141,48 @@ jobs:
         uses: actions/attest-build-provenance@v2
         with:
           subject-path: 'wheels-*/*'
+      - name: upload linux artifact aarcg64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/wheels-linux-aarch64.zip
+          asset_name: wheels-linux-aarch64.zip
+          asset_content_type: application/zip
+      - name: upload linux artifact x86_64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/wheels-linux-x86_64.zip
+          asset_name: wheels-linux-x86_64.zip
+          asset_content_type: application/zip
+      - name: upload darwin artifact aarch64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/wheels-macos-aarch64.zip
+          asset_name: wheels-macos-aarch64.zip
+          asset_content_type: application/zip
+      - name: upload darwin artifact x86_64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/wheels-macos-x86_64
+          asset_name: wheels-macos-x86_64
+          asset_content_type: application/zip
+      - name: upload windows artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/wheels-windows-x64.zip
+          asset_name: wheels-windows-x64.zip
+          asset_content_type: application/zip

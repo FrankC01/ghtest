@@ -147,7 +147,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/wheels-linux-aarch64.zip
+          asset_path: dist/wheels-linux-aarch64.zip
           asset_name: wheels-linux-aarch64.zip
           asset_content_type: application/zip
       - name: upload linux artifact x86_64
@@ -156,7 +156,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/wheels-linux-x86_64.zip
+          asset_path: dist/wheels-linux-x86_64.zip
           asset_name: wheels-linux-x86_64.zip
           asset_content_type: application/zip
       - name: upload darwin artifact aarch64
@@ -165,7 +165,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/wheels-macos-aarch64.zip
+          asset_path: dist/wheels-macos-aarch64.zip
           asset_name: wheels-macos-aarch64.zip
           asset_content_type: application/zip
       - name: upload darwin artifact x86_64
@@ -174,7 +174,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/wheels-macos-x86_64
+          asset_path: dist/wheels-macos-x86_64
           asset_name: wheels-macos-x86_64
           asset_content_type: application/zip
       - name: upload windows artifact
@@ -183,6 +183,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/wheels-windows-x64.zip
+          asset_path: dist/wheels-windows-x64.zip
           asset_name: wheels-windows-x64.zip
           asset_content_type: application/zip

@@ -47,7 +47,7 @@ jobs:
       matrix:
         platform:
           - runner: windows-latest
-            target: x64
+            target: x86_64
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -92,6 +92,7 @@ jobs:
           name: wheels-macos-${{ matrix.platform.target }}
           path: dist
 
+  
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -205,6 +206,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifacts/win/x86_64/wheels-win-x64.zip
+          asset_path: artifacts/win/x86_64/wheels-win-x86_64.zip
           asset_name: wheels-win-x64.zip
           asset_content_type: application/zip

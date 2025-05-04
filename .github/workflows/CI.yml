@@ -47,7 +47,7 @@ jobs:
       matrix:
         platform:
           - runner: windows-latest
-            target: x86_64
+            target: x64
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -193,11 +193,11 @@ jobs:
       - name: Download win x86_64 artifact
         uses: actions/download-artifact@v4
         with:
-          name: wheels-win-x86_64
-          path: artifacts/win/x86_64
+          name: wheels-win-x64
+          path: artifacts/win/x64
       - name: Zip artifact
         run: |
-          cd artifacts/win/x86_64
+          cd artifacts/win/x64
           zip -r wheels-win-x86_64.zip . 
             
       - name: upload windows artifact

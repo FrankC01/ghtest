@@ -198,7 +198,7 @@ jobs:
       - name: Zip artifact
         run: |
           cd artifacts/win/x64
-          zip -r wheels-win-x86_64.zip . 
+          zip -r wheels-windows-x64.zip . 
             
       - name: upload windows artifact
         uses: actions/upload-release-asset@v1
@@ -206,6 +206,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifacts/win/x86_64/wheels-win-x86_64.zip
-          asset_name: wheels-win-x64.zip
+          asset_path: artifacts/win/x64/wheels-windows-x64.zip
+          asset_name: wheels-windows-x64.zip
           asset_content_type: application/zip

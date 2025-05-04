@@ -193,7 +193,7 @@ jobs:
       - name: Download win x86_64 artifact
         uses: actions/download-artifact@v4
         with:
-          name: wheels-win-x64
+          name: wheels-windows-x64
           path: artifacts/win/x64
       - name: Zip artifact
         run: |

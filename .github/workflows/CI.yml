@@ -125,15 +125,15 @@ jobs:
         run: |
           echo "${{env.REL_REPO}}-${{env.REL_VERSION}}-linux-aarch64" 
           cd artifacts/linux/aarch64
-          zip -r wheels-linux-aarch64.zip .
+          zip -r ${{env.REL_REPO}}-${{env.REL_VERSION}}-linux-aarch64.zip .
       - name: upload linux artifact aarcg64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifacts/linux/aarch64/wheels-linux-aarch64.zip
-          asset_name: wheels-linux-aarch64.zip
+          asset_path: artifacts/linux/aarch64/${{env.REL_REPO}}-${{env.REL_VERSION}}-linux-aarch64.zip
+          asset_name: ${{env.REL_REPO}}-${{env.REL_VERSION}}-linux-aarch64.zip
           asset_content_type: application/zip
       # Linux intel
       - name: Download Linux x86_64 artifact
@@ -145,15 +145,15 @@ jobs:
         run: |
           echo "${{env.REL_REPO}}-${{env.REL_VERSION}}-linux-x86_64" 
           cd artifacts/linux/x86_64
-          zip -r wheels-linux-x86_64.zip . 
+          zip -r ${{env.REL_REPO}}-${{env.REL_VERSION}}-linux-x86_64.zip . 
       - name: upload linux artifact x86_64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifacts/linux/x86_64/wheels-linux-x86_64.zip
-          asset_name: wheels-linux-x86_64.zip
+          asset_path: artifacts/linux/x86_64/${{env.REL_REPO}}-${{env.REL_VERSION}}-linux-x86_64.zip
+          asset_name: ${{env.REL_REPO}}-${{env.REL_VERSION}}-linux-x86_64.zip
           asset_content_type: application/zip
 
       # macos ARM
@@ -166,15 +166,15 @@ jobs:
         run: |
           echo "${{env.REL_REPO}}-${{env.REL_VERSION}}-macos-aarch64" 
           cd artifacts/macos/aarch64
-          zip -r wheels-macos-aarch64.zip . 
+          zip -r ${{env.REL_REPO}}-${{env.REL_VERSION}}-macos-aarch64.zip . 
       - name: upload darwin artifact aarch64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifacts/macos/aarch64/wheels-macos-aarch64.zip
-          asset_name: wheels-macos-aarch64.zip
+          asset_path: artifacts/macos/aarch64/${{env.REL_REPO}}-${{env.REL_VERSION}}-macos-aarch64.zip
+          asset_name: ${{env.REL_REPO}}-${{env.REL_VERSION}}-macos-aarch64.zip
           asset_content_type: application/zip
       # macos intel
       - name: Download macos x86_64 artifact
@@ -186,15 +186,15 @@ jobs:
         run: |
           echo "${{env.REL_REPO}}-${{env.REL_VERSION}}-macos-x86_64"
           cd artifacts/macos/x86_64
-          zip -r wheels-macos-x86_64.zip . 
+          zip -r ${{env.REL_REPO}}-${{env.REL_VERSION}}-macos-x86_64.zip . 
       - name: upload darwin artifact x86_64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifacts/macos/x86_64/wheels-macos-x86_64.zip
-          asset_name: wheels-macos-x86_64.zip
+          asset_path: artifacts/macos/x86_64/${{env.REL_REPO}}-${{env.REL_VERSION}}-macos-x86_64.zip
+          asset_name: ${{env.REL_REPO}}-${{env.REL_VERSION}}-macos-x86_64.zip
           asset_content_type: application/zip
 
       # Windows intel
@@ -207,7 +207,7 @@ jobs:
         run: |
           echo "${{env.REL_REPO}}-${{env.REL_VERSION}}-windows-x86_64"
           cd artifacts/win/x64
-          zip -r wheels-windows-x64.zip . 
+          zip -r ${{env.REL_REPO}}-${{env.REL_VERSION}}-windows-x64.zip . 
             
       - name: upload windows artifact
         uses: actions/upload-release-asset@v1
@@ -215,6 +215,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifacts/win/x64/wheels-windows-x64.zip
-          asset_name: wheels-windows-x64.zip
+          asset_path: artifacts/win/x64/${{env.REL_REPO}}-${{env.REL_VERSION}}-windows-x64.zip
+          asset_name: ${{env.REL_REPO}}-${{env.REL_VERSION}}-windows-x64.zip
           asset_content_type: application/zip

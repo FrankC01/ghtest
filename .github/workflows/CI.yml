@@ -13,6 +13,11 @@ on:
 permissions:
   contents: read
 
+env:
+  REL_VERSION: ${{ github.event.release.tag_name }}
+  REL_REPO: ${{ github.event.repository.name }}
+  REL_PREFIX: $REL_REPO-REL_VERSION
+
 jobs:
   linux:
     runs-on: ${{ matrix.platform.runner }}
@@ -112,13 +117,14 @@ jobs:
         with:
           subject-path: 'wheels-*/*'
       # Linux Arm
-      - name: Download Linux aarch64 artifact
+      - name: Download Linux aarch64 artifact          
         uses: actions/download-artifact@v4
         with:
           name: wheels-linux-aarch64
           path: artifacts/linux/aarch64  
       - name: Zip artifact
         run: |
+          echo "$REL_PREFIX-linux-aarch64" 
           cd artifacts/linux/aarch64
           zip -r wheels-linux-aarch64.zip .
       - name: upload linux artifact aarcg64
@@ -138,6 +144,7 @@ jobs:
           path: artifacts/linux/x86_64
       - name: Zip artifact
         run: |
+          echo "$REL_PREFIX-linux-x86_64" 
           cd artifacts/linux/x86_64
           zip -r wheels-linux-x86_64.zip . 
       - name: upload linux artifact x86_64
@@ -158,6 +165,7 @@ jobs:
           path: artifacts/macos/aarch64
       - name: Zip artifact
         run: |
+          echo "$REL_PREFIX-macos-aarch64" 
           cd artifacts/macos/aarch64
           zip -r wheels-macos-aarch64.zip . 
       - name: upload darwin artifact aarch64
@@ -177,6 +185,7 @@ jobs:
           path: artifacts/macos/x86_64
       - name: Zip artifact
         run: |
+          echo "$REL_PREFIX-macos-x86_64"
           cd artifacts/macos/x86_64
           zip -r wheels-macos-x86_64.zip . 
       - name: upload darwin artifact x86_64
@@ -197,6 +206,7 @@ jobs:
           path: artifacts/win/x64
       - name: Zip artifact
         run: |
+          echo "$REL_PREFIX-windows-x86_64"
           cd artifacts/win/x64
           zip -r wheels-windows-x64.zip . 
             
